@@ -4,6 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.2"
