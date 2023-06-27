@@ -1,1 +1,3 @@
-export { default as slackHandler } from './handler';
+const slackHandler = require('./handler');
+
+module.exports = slackHandler;

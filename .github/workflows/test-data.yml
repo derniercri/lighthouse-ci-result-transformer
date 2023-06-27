@@ -8,7 +8,8 @@ on:
         required: true
 
 jobs:
-  lighthouseci:
+  artifact:
+    name: Generate an example report for a website
     runs-on: ubuntu-latest
 
     steps:

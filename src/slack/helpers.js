@@ -7,7 +7,7 @@ const formattedSlackResults = () => Object.keys(global.results.categories).map((
   };
 });
 
-export const slackWebhookPayload = {
+const slackWebhookPayload = () => ({
   blocks: [
     {
       type: 'section',
@@ -21,4 +21,8 @@ export const slackWebhookPayload = {
       fields: formattedSlackResults(),
     },
   ],
+});
+
+module.exports = {
+  slackWebhookPayload,
 };
