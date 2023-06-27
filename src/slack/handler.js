@@ -1,13 +1,8 @@
+const axios = require('axios');
 const { slackWebhookPayload } = require('./helpers');
 
 const slackHandler = (slackWebhookUrl) => {
-  fetch(slackWebhookUrl, {
-    method: 'POST',
-    body: JSON.stringify(slackWebhookPayload()),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  axios.post(slackWebhookUrl, slackWebhookPayload());
 };
 
 module.exports = slackHandler;
