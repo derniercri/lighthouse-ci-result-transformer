@@ -27,3 +27,12 @@ jobs:
           resultsPath: ${{steps.audit.outputs.resultsPath}}
           slackWebhookUrl: ${{ github.secrets.SLACK_WEBHOOK_URL }} # Optional
 ```
+
+## Publishing a new version
+
+```sh
+# First, commit your changes
+
+# Then, upgrade the version
+$ yarn version --new-version 0.0.1
+```
