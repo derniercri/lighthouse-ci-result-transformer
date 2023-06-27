@@ -17,7 +17,6 @@
   },
   "scripts": {
     "build": "ncc build src/index.js",
-    "preversion": "yarn build",
     "predistribute": "yarn build && git add . && git commit",
     "distribute": "yarn version",
     "lint": "eslint 'src/**/*.js'",

@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Having a simple GitHub Actions that would handle the output of the [Lighthouse CI Action](https://github.com/treosh/lighthouse-ci-action).
+Having a simple GitHub Action that would handle the output of the [Lighthouse CI Action](https://github.com/treosh/lighthouse-ci-action).
 
 ## Current features
 
@@ -31,8 +31,11 @@ jobs:
 ## Publishing a new version
 
 ```sh
-# First, commit your changes
+# Build, commit your changes and create a tag
+$ yarn distribute
 
-# Then, upgrade the version
-$ yarn version --new-version 0.0.1
+# Push to GitHub
+$ git push origin --tags
 ```
+
+You will need to create a release to publish the action to the GitHub Marketplace
