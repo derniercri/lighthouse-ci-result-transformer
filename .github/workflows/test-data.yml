@@ -1,0 +1,26 @@
+name: Test Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: The URL to generate the report for
+        required: true
+
+jobs:
+  lighthouseci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Audit URLs using Lighthouse
+        id: audit
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            ${{ github.event.inputs.url }}
+
+      - name: Save result as downloadable artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: report
+          path: ${{steps.audit.outputs.resultsPath}}

@@ -1,0 +1,13 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+
+inputs:
+  resultsPath:
+    description: The LightHouse CI outputs.resultsPath
+    required: true
+  slackWebhookUrl:
+    description: The URL of the Slack Webhook
+
+runs:
+  using: node16
+  main: index.js
