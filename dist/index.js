@@ -30115,14 +30115,16 @@ module.exports = githubCommentHandler;
 /***/ }),
 
 /***/ 1016:
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const formattedGithubCommentResults = () => Object.keys(global.results.categories).map((key) => {
+const { mapKeys, join } = __nccwpck_require__(250);
+
+const formattedGithubCommentResults = () => join(mapKeys(global.results.categories, (key) => {
   const item = global.results.categories[key];
   const score = (item.score * 100).toFixed(0);
 
   return `| ${item.title} | ${score} | ${score >= 80 ? '✅' : '❌'} |`;
-});
+}), '\n');
 
 const githubCommentBody = () => `
 Your Lighthouse report is ready ! :tada:
