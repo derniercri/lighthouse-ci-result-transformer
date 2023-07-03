@@ -5,6 +5,10 @@ inputs:
   resultsPath:
     description: The LightHouse CI outputs.resultsPath
     required: true
+  GITHUB_TOKEN:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
   githubComment:
     description: Should the action post the result as a comment
     default: 'false'
