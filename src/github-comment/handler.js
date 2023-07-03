@@ -4,6 +4,7 @@ const {
   get,
   split,
   find,
+  head,
 } = require('lodash');
 const { githubCommentBody } = require('./helpers');
 
@@ -26,9 +27,12 @@ const githubCommentHandler = async () => {
 
   const commentId = `lighouse-report-${pullRequestId}`;
 
+
   const mutationFunction = find(comments, (comment) => comment.comment_id === commentId)
-    ? octokit.rest.issues.updateComment
-    : octokit.rest.issues.createComment;
+  ? octokit.rest.issues.updateComment
+  : octokit.rest.issues.createComment;
+
+  core.debug(head(comments))
 
   return mutationFunction({
     ...context.repo,
