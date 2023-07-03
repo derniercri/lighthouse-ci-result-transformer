@@ -2,6 +2,7 @@ const fs = require('fs');
 const core = require('@actions/core');
 const { split, last, head } = require('lodash');
 const slackHandler = require('./slack');
+const githubCommentHandler = require('./github-comment');
 
 const readManifest = (directory) => {
   const manifestPath = `${directory}/manifest.json`;
@@ -24,6 +25,10 @@ try {
   const slackWebhookUrl = core.getInput('slackWebhookUrl');
   if (slackWebhookUrl) {
     slackHandler(slackWebhookUrl);
+  }
+
+  if (core.getInput('githubComment') === 'true') {
+    githubCommentHandler();
   }
 } catch (error) {
   core.setFailed(error.message);

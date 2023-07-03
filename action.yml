@@ -5,6 +5,9 @@ inputs:
   resultsPath:
     description: The LightHouse CI outputs.resultsPath
     required: true
+  githubComment:
+    description: Should the action post the result as a comment
+    default: 'false'
   slackWebhookUrl:
     description: The URL of the Slack Webhook
 
