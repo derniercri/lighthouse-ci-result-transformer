@@ -30088,20 +30088,37 @@ function wrappy (fn, cb) {
 
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
-const { get } = __nccwpck_require__(250);
+const {
+  get,
+  split,
+  find,
+} = __nccwpck_require__(250);
 const { githubCommentBody } = __nccwpck_require__(1016);
 
-const githubCommentHandler = () => {
+const githubCommentHandler = async () => {
   const { context } = github;
-  const githubToken = core.getInput('GITHUB_TOKEN');
+  const githubToken = core.getInput('githubToken');
   const octokit = github.getOctokit(githubToken);
   const pullRequestId = get(context, 'payload.pull_request.number');
+  const [owner, repo] = split(core.getInput('repository'), '/');
 
   if (!pullRequestId) {
     return core.warning('githubComment can only enabled on pull requests. Skipping');
   }
 
-  return octokit.rest.issues.updateComment({
+  const comments = await octokit.paginate(octokit.rest.issues.listComments, {
+    owner,
+    repo,
+    issue_number: pullRequestId,
+  });
+
+  const commentId = `lighouse-report-${pullRequestId}`;
+
+  const mutationFunction = find(comments, (comment) => comment.comment_id === commentId)
+    ? octokit.rest.issues.updateComment
+    : octokit.rest.issues.createComment;
+
+  return mutationFunction({
     ...context.repo,
     issue_number: pullRequestId,
     comment_id: `lighouse-report-${pullRequestId}`,
