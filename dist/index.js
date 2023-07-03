@@ -30092,6 +30092,7 @@ const {
   get,
   split,
   find,
+  head,
 } = __nccwpck_require__(250);
 const { githubCommentBody } = __nccwpck_require__(1016);
 
@@ -30114,9 +30115,12 @@ const githubCommentHandler = async () => {
 
   const commentId = `lighouse-report-${pullRequestId}`;
 
+
   const mutationFunction = find(comments, (comment) => comment.comment_id === commentId)
-    ? octokit.rest.issues.updateComment
-    : octokit.rest.issues.createComment;
+  ? octokit.rest.issues.updateComment
+  : octokit.rest.issues.createComment;
+
+  core.debug(head(comments))
 
   return mutationFunction({
     ...context.repo,
