@@ -1,6 +1,6 @@
-const { mapKeys, join } = require('lodash');
+const { join, keys, map } = require('lodash');
 
-const formattedGithubCommentResults = () => join(mapKeys(global.results.categories, (key) => {
+const formattedGithubCommentResults = () => join(map(keys(global.results.categories), (key) => {
   const item = global.results.categories[key];
   const score = (item.score * 100).toFixed(0);
 

@@ -30117,9 +30117,9 @@ module.exports = githubCommentHandler;
 /***/ 1016:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { mapKeys, join } = __nccwpck_require__(250);
+const { join, keys, map } = __nccwpck_require__(250);
 
-const formattedGithubCommentResults = () => join(mapKeys(global.results.categories, (key) => {
+const formattedGithubCommentResults = () => join(map(keys(global.results.categories), (key) => {
   const item = global.results.categories[key];
   const score = (item.score * 100).toFixed(0);
 
