@@ -30101,7 +30101,7 @@ const githubCommentHandler = () => {
     return core.warning('githubComment can only enabled on pull requests. Skipping');
   }
 
-  return octokit.rest.issues.createComment({
+  return octokit.rest.issues.updateComment({
     ...context.repo,
     issue_number: pullRequestId,
     comment_id: `lighouse-report-${pullRequestId}`,
